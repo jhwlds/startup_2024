@@ -22,14 +22,12 @@ export const useGameLogic = () => {
         }
     };
 
-
     const updateRanks = () => {
         const userName = new URLSearchParams(window.location.search).get('name');
         const newScore = { name: userName, score };
         
         const savedScores = JSON.parse(localStorage.getItem('topScores')) || [];
         
-
         const updatedScores = [...savedScores, newScore]
             .sort((a, b) => b.score - a.score)
             .slice(0, 5);
@@ -37,5 +35,12 @@ export const useGameLogic = () => {
         localStorage.setItem('topScores', JSON.stringify(updatedScores));
     };
 
-    return { questions, currentQuestionIndex, score, isGameOver, handleAnswerClick };
+
+    const resetGame = () => {
+        setCurrentQuestionIndex(0);
+        setScore(0);
+        setIsGameOver(false);
+    };
+
+    return { questions, currentQuestionIndex, score, isGameOver, handleAnswerClick, resetGame };
 };
