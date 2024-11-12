@@ -1,0 +1,74 @@
+.login-box {
+    text-align: center;
+    background-color: #242323;
+    margin: 15% auto;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+    max-width: 300px;
+    color: #fff;
+}
+
+.login-box label {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.login-box input {
+    width: 80%;
+    padding: 10px;
+    margin: 15px 0;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background-color: #333;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.login-box input::placeholder {
+    color: #aaa;
+}
+
+.login-box input:focus {
+    background-color: #444;
+}
+
+.login-box button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.login-box a:hover {
+    background-color: #45a049;
+}
+
+@media (max-width: 600px) {
+    .login-box {
+        width: 60%;
+        padding: 20px;
+        margin-top: 25%;
+        margin-bottom: -100px;
+    }
+
+    .login-box label {
+        font-size: 1.2em;
+    }
+
+    .login-box input {
+        padding: 8px;
+    }
+
+    .login-box a {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}
