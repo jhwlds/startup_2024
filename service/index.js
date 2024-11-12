@@ -47,3 +47,18 @@ apiRouter.post('/login', (req, res) => {
 
     res.json({ message: 'Login successful', username: user.username });
 });
+
+apiRouter.post('/submit-score', (req, res) => {
+    const { username, score } = req.body;
+
+    if (!username || score === undefined) {
+        return res.status(400).json({ error: 'Username and score are required' });
+    }
+
+    scores.push({ username, score, timestamp: new Date().toISOString() });
+
+    scores.sort((a, b) => b.score - a.score || new Date(b.timestamp) - new Date(a.timestamp));
+    const topScores = scores.slice(0, 5);
+
+    res.json(topScores);
+});

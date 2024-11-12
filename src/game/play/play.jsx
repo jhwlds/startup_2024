@@ -7,33 +7,35 @@ export function Play() {
     const { questions, currentQuestionIndex, score, isGameOver, handleAnswerClick, resetGame } = useGameLogic();
     const currentQuestion = questions[currentQuestionIndex];
     const location = useLocation();
-    const userName = new URLSearchParams(location.search).get('name');
+    const userName = new URLSearchParams(location.search).get('name'); 
+    const userId = sessionStorage.getItem('userId');
 
     const [rankings, setRankings] = useState([]);
 
     useEffect(() => {
         if (isGameOver) {
-            updateRank(userName, score);
+            updateRank(userName, score); 
         }
     }, [isGameOver, score, userName]);
 
-    const updateRank = (name, score) => {
-        const currentRankings = JSON.parse(sessionStorage.getItem('rankings')) || [];
-        const newRecord = { name, score, timestamp: new Date().toISOString() };
+    const updateRank = async (name, score) => {
+        try {
+            const response = await fetch('/api/submit-score', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: name, score })  
+            });
 
-        currentRankings.push(newRecord);
-        currentRankings.sort((a, b) => {
-            if (b.score === a.score) {
-                return new Date(b.timestamp) - new Date(a.timestamp);
+            if (!response.ok) {
+                throw new Error(`Server error: ${response.statusText}`);
             }
-            return b.score - a.score;
-        });
 
-        const topRankings = currentRankings.slice(0, 5);
-        sessionStorage.setItem('rankings', JSON.stringify(topRankings));
-        setRankings(topRankings);
+            const topRankings = await response.json();
+            setRankings(topRankings); 
+        } catch (error) {
+            console.error('Error updating ranking:', error);
+        }
     };
-
 
     const restartGame = () => {
         resetGame(); 
@@ -67,7 +69,7 @@ export function Play() {
                     <ul>
                         {rankings.map((rank, index) => (
                             <li key={index}>
-                                {rank.name}: {rank.score} points
+                                {rank.username}: {rank.score} points
                             </li>
                         ))}
                     </ul>
