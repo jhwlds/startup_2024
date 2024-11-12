@@ -8,7 +8,6 @@ export function Play() {
     const currentQuestion = questions[currentQuestionIndex];
     const location = useLocation();
     const userName = new URLSearchParams(location.search).get('name'); 
-    const userId = sessionStorage.getItem('userId');
 
     const [rankings, setRankings] = useState([]);
 
