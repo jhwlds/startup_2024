@@ -4,7 +4,7 @@ import './play.css';
 import { useGameLogic } from './gameLogic.js';
 
 export function Play() {
-    const { questions, currentQuestionIndex, score, isGameOver, handleAnswerClick } = useGameLogic();
+    const { questions, currentQuestionIndex, score, isGameOver, handleAnswerClick, resetGame } = useGameLogic();
     const currentQuestion = questions[currentQuestionIndex];
     const location = useLocation();
     const userName = new URLSearchParams(location.search).get('name');
@@ -34,9 +34,9 @@ export function Play() {
         setRankings(topRankings);
     };
 
-    const resetRankings = () => {
-        sessionStorage.removeItem('rankings');
-        setRankings([]);
+
+    const restartGame = () => {
+        resetGame(); 
     };
 
     return (
@@ -56,6 +56,7 @@ export function Play() {
                         ) : (
                             <div>
                                 <h2>{userName}, Your final score is: {score}</h2>
+                                <button onClick={restartGame}>Restart Game</button>
                             </div>
                         )}
                     </div>
@@ -70,7 +71,6 @@ export function Play() {
                             </li>
                         ))}
                     </ul>
-                    <button onClick={resetRankings}>Reset Rankings</button>
                 </div>
             </div>
         </header>
