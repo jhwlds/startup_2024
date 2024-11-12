@@ -1,3 +1,4 @@
+import React from 'react';
 import { Menu } from './menu/menu.jsx'
 import { Footer } from './footer/footer.jsx'
 import { Main } from './main/main.jsx'
