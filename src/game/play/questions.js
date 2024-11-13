@@ -5,9 +5,14 @@ const questions = [
         correctAnswer: "findmyprofessors.com"
     },
     {
-        questionText: "Which language is primarily used for web development?",
+        questionText: "Which language did I primarily use for web development?",
         options: ["JavaScript", "Python"],
         correctAnswer: "JavaScript"
+    },
+    {
+        questionText: "what is my emphasis in my major?",
+        options: ["Software Engineer", "Machine Learning"],
+        correctAnswer: "Machine Learning"
     },
 ];
 
