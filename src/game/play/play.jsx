@@ -64,7 +64,7 @@ export function Play() {
                 </div>
 
                 <div className="rank-box">
-                    <h2>Your Rank</h2>
+                    <h2>Top 5 Ranker</h2>
                     <ul>
                         {rankings.map((rank, index) => (
                             <li key={index}>
