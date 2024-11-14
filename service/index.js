@@ -1,9 +1,8 @@
 const express = require('express');
 const uuid = require('uuid');
-const axios = require('axios');
 const app = express();
 
-const port = process.argv.length > 2 ? process.argv[2] : 3000;
+const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 app.use(express.json());
 app.use(express.static('public'));
@@ -62,15 +61,4 @@ apiRouter.post('/submit-score', (req, res) => {
     const topScores = scores.slice(0, 5);
 
     res.json(topScores);
-});
-
-apiRouter.get('/motivation', async (req, res) => {
-    try {
-        const response = await axios.get('https://gomezmig03.github.io/MotivationalAPI/en.json');
-        
-        res.json(response.data);
-    } catch (error) {
-        console.error('Error fetching motivational phrases:', error);
-        res.status(500).json({ error: 'Failed to retrieve motivational phrases' });
-    }
 });

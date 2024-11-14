@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import './motivation.css';
 
 export function MotivationPopup() {
@@ -8,8 +7,12 @@ export function MotivationPopup() {
 
     const fetchPhrase = async () => {
         try {
-            const response = await axios.get('/api/motivation');
-            const randomPhrase = response.data[Math.floor(Math.random() * response.data.length)];
+            const response = await fetch('https://gomezmig03.github.io/MotivationalAPI/en.json');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            const randomPhrase = data[Math.floor(Math.random() * data.length)];
             setPhrase(randomPhrase.phrase);
             setShowPopup(true);
         } catch (error) {
