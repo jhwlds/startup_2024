@@ -42,7 +42,7 @@ export function Main() {
                 <a href="https://www.linkedin.com/in/howon-jung" target="_blank" rel="noopener noreferrer">
                   <img src="/icons/LI.png" className="profileIcon" style={{ marginRight: '10px' }} alt="LinkedIn" />
                 </a>
-                <a href="https://github.com/jhwlds/startup-2024.git" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/jhwlds/startup_2024.git" target="_blank" rel="noopener noreferrer">
                   <img src="/icons/GH.png" className="profileIcon" style={{ marginRight: '10px' }} alt="GitHub" />
                 </a>
                 <a href="https://www.facebook.com/jung.howon.988" target="_blank" rel="noopener noreferrer">
@@ -149,7 +149,7 @@ export function Main() {
               </a>
               <br />
               <br />
-              <a href='https://github.com/jhwlds/startup-2024.git' target="_blank" rel="noopener noreferrer">
+              <a href='https://github.com/jhwlds/startup_2024.git' target="_blank" rel="noopener noreferrer">
                 Jhwlds.com
               </a>
               <br />
