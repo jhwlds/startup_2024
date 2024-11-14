@@ -67,6 +67,8 @@ I am going to use the required technologies in the following ways.
 
 ## **Service deliverable**
 
-## **DB/Login deliverable**
-
-## **WebSocket deliverable**
+- **Node.js/Express HTTP service** - Done!
+- **Static middleware for frontend** - Done!
+- **Calls to third party endpoints** - 
+- **Backend service endpoints** - Placeholders for login that stores the current user on the server.
+- **Frontend calls service endpoints** - I did this using the fetch function.
