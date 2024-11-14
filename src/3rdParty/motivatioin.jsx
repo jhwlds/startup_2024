@@ -10,7 +10,7 @@ export function MotivationPopup() {
         try {
             const response = await axios.get('/api/motivation');
             const randomPhrase = response.data[Math.floor(Math.random() * response.data.length)];
-            setPhrase(randomPhrase);
+            setPhrase(randomPhrase.phrase);
             setShowPopup(true);
         } catch (error) {
             console.error('Failed to fetch motivational phrase:', error);
@@ -21,7 +21,7 @@ export function MotivationPopup() {
 
     return (
         <div>
-            <button onClick={fetchPhrase}>Motivational Phrases</button>
+            <button onClick={fetchPhrase} className='Motivation_button'>Motivational Phrases</button>
              
             {showPopup && (
                 <div className="popup-overlay" onClick={closePopup}>

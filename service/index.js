@@ -64,8 +64,6 @@ apiRouter.post('/submit-score', (req, res) => {
     res.json(topScores);
 });
 
-const axios = require('axios');
-
 apiRouter.get('/motivation', async (req, res) => {
     try {
         const response = await axios.get('https://gomezmig03.github.io/MotivationalAPI/en.json');

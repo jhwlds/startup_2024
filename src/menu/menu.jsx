@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Link as ScrollLink, scroller } from 'react-scroll';
 import React from 'react';
+import { MotivationPopup } from '../3rdParty/motivatioin.jsx';
 import './menu.css';
 
 export function Menu() {
@@ -33,6 +34,9 @@ export function Menu() {
               </li>
               <li>
                 <button onClick={() => scrollToSection('project')}>Experiences</button>
+              </li>
+              <li>
+                <MotivationPopup />
               </li>
             </ul>
     
