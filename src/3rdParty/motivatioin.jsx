@@ -21,7 +21,7 @@ export function MotivationPopup() {
 
     return (
         <div>
-            <button onClick={fetchPhrase} className='Motivation_button'>Motivational Phrases</button>
+            <button onClick={fetchPhrase}>Motivational Phrases</button>
              
             {showPopup && (
                 <div className="popup-overlay" onClick={closePopup}>
