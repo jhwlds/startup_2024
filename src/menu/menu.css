@@ -67,7 +67,12 @@
         display: flex;
     }
 
-    .menuUl > li:not(:first-child) {
-        display: none;
+    .menuUl > li {
+        display: none; 
+    }
+    
+    .menuUl > li:first-child,
+    .menuUl > li:last-child {
+        display: block;
     }
 }
