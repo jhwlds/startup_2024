@@ -26,7 +26,7 @@ export function MotivationPopup() {
             {showPopup && (
                 <div className="popup-overlay" onClick={closePopup}>
                     <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-                        <h3>Motivational Phrases For You Today</h3>
+                        <h3>Have A Great Day!</h3>
                         <p>{phrase}</p>
                         <button onClick={closePopup}>close</button>
                     </div>
