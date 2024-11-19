@@ -37,3 +37,7 @@
     cursor: pointer;
     font-weight: lighter;
 }
+
+.close-box {
+    margin-top: 10px;
+}

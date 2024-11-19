@@ -24,14 +24,14 @@ export function MotivationPopup() {
 
     return (
         <div>
-            <button onClick={fetchPhrase}>Motivation</button>
+            <button className='motivation-button' onClick={fetchPhrase}>Motivation</button>
              
             {showPopup && (
                 <div className="popup-overlay" onClick={closePopup}>
                     <div className="popup-content" onClick={(e) => e.stopPropagation()}>
                         <h3>Have A Great Day!</h3>
                         <p>{phrase}</p>
-                        <button className='motivation-button' onClick={closePopup}>close</button>
+                        <button className='close-box' onClick={closePopup}>close</button>
                     </div>
                 </div>
             )}
