@@ -31,7 +31,7 @@ export function MotivationPopup() {
                     <div className="popup-content" onClick={(e) => e.stopPropagation()}>
                         <h3>Have A Great Day!</h3>
                         <p>{phrase}</p>
-                        <button onClick={closePopup}>close</button>
+                        <button className='motivation-button' onClick={closePopup}>close</button>
                     </div>
                 </div>
             )}
