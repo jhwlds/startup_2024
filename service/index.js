@@ -1,5 +1,5 @@
 const express = require('express');
-const uuid = require('uuid');
+const { createUser, loginUser, submitScore } = require('./database');
 const app = express();
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -11,54 +11,49 @@ var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+    console.log(`Listening on port ${port}`);
 });
 
-let users = {}; 
-let scores = [];
-
-
-apiRouter.post('/create', (req, res) => {
+apiRouter.post('/create', async (req, res) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
         return res.status(400).json({ error: 'Username and password are required' });
     }
 
-    const userExists = Object.values(users).some(user => user.username === username);
-    if (userExists) {
-        return res.status(400).json({ error: 'Username already exists' });
+    try {
+        const result = await createUser(username, password);
+        res.json(result);
+    } catch (err) {
+        res.status(500).json({ error: 'Error creating user' });
     }
-
-    const userId = uuid.v4();
-    users[userId] = { username, password, score: 0 };
-
-    res.json({ userId, username });
 });
 
-
-apiRouter.post('/login', (req, res) => {
+apiRouter.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
-    const user = Object.values(users).find(user => user.username === username && user.password === password);
-    if (!user) {
-        return res.status(400).json({ error: 'Invalid username or password' });
+    try {
+        const user = await loginUser(username, password);
+        if (!user) {
+            return res.status(400).json({ error: 'Invalid username or password' });
+        }
+        res.json({ message: 'Login successful', username: user.username });
+    } catch (err) {
+        res.status(500).json({ error: 'Error logging in' });
     }
-
-    res.json({ message: 'Login successful', username: user.username });
 });
 
-apiRouter.post('/submit-score', (req, res) => {
+apiRouter.post('/submit-score', async (req, res) => {
     const { username, score } = req.body;
 
     if (!username || score === undefined) {
         return res.status(400).json({ error: 'Username and score are required' });
     }
 
-    scores.push({ username, score, timestamp: new Date().toISOString() });
-
-    scores.sort((a, b) => b.score - a.score || new Date(b.timestamp) - new Date(a.timestamp));
-    const topScores = scores.slice(0, 5);
-
-    res.json(topScores);
+    try {
+        const topScores = await submitScore(username, score);
+        res.json(topScores);
+    } catch (err) {
+        res.status(500).json({ error: 'Error submitting score' });
+    }
 });
