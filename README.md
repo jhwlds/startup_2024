@@ -78,5 +78,6 @@ I am going to use the required technologies in the following ways.
 - **MongoDB Atlas database created** - Done!
 - **Stores data in MongoDB** - Done!
 - **User registration** - Creates a new account in the database.
-- **Backend service endpoints** - Placeholders for login that stores the current user on the server.
-- **Frontend calls service endpoints** - I did this using the fetch function.
+- **existing user** - Gives an alert if the user already exists.
+- **Use MongoDB to store credentials** - Stores both user and their scores.
+- **Restricts functionality** - You cannot play game until you have logged in.
