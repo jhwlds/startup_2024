@@ -6,8 +6,9 @@ const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 app.use(express.json());
 app.use(express.static('public'));
+app.set('trust proxy', true);
 
-var apiRouter = express.Router();
+const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 app.listen(port, () => {

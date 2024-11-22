@@ -19,7 +19,7 @@ const scoreCollection = db.collection('score');
     console.log(`Unable to connect to database with ${url} because ${ex.message}`);
     process.exit(1);
   }
-})();
+});
 
 
 async function createUser(username, password) {
