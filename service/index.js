@@ -1,5 +1,5 @@
 const express = require('express');
-const { createUser, loginUser, submitScore } = require('./database');
+const { createUser, loginUser, submitScore } = require('./database.js');
 const app = express();
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -29,7 +29,8 @@ apiRouter.post('/create', async (req, res) => {
         if (err.message === 'Username already exists') {
             res.status(400).json({ error: err.message }); 
         } else {
-            res.status(500).json({ error: 'Error creating user' });
+            console.log(err);
+            res.status(500).json({ error: 'Error is happening here!' });
         }
     }
 });
