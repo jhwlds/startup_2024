@@ -26,7 +26,11 @@ apiRouter.post('/create', async (req, res) => {
         const result = await createUser(username, password);
         res.json(result);
     } catch (err) {
-        res.status(500).json({ error: 'Error creating user' });
+        if (err.message === 'Username already exists') {
+            res.status(400).json({ error: err.message }); 
+        } else {
+            res.status(500).json({ error: 'Error creating user' });
+        }
     }
 });
 

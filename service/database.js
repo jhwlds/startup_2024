@@ -23,17 +23,22 @@ const scoreCollection = db.collection('score');
 
 
 async function createUser(username, password) {
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const userId = uuid.v4();
 
-  const user = {
-    userId,
-    username,
-    password: hashedPassword,
-  };
+    const existingUser = await userCollection.findOne({ username });
+    if (existingUser) {
+        throw new Error('Username already exists'); 
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const userId = uuid.v4();
 
-  await userCollection.insertOne(user);
-  return { userId, username };
+    const user = {
+        userId,
+        username,
+        password: hashedPassword,
+    };
+
+    await userCollection.insertOne(user);
+    return { userId, username };
 }
 
 
@@ -63,5 +68,4 @@ module.exports = {
   createUser,
   loginUser,
   submitScore,
-  getHighScores,
 };

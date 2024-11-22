@@ -21,13 +21,17 @@ export function Login() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username: userName, password })
             });
-
+    
             if (response.ok) {
                 alert('Account created! You can now log in.');
                 setIsCreating(false);
             } else {
                 const data = await response.json();
-                alert(data.error);
+                if (data.error === 'Username already exists') {
+                    alert('This username is already taken. Please choose another one.');
+                } else {
+                    alert(data.error || 'Error creating account.');
+                }
             }
         } catch (error) {
             alert('Error creating account.');
