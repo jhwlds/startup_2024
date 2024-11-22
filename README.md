@@ -72,3 +72,11 @@ I am going to use the required technologies in the following ways.
 - **Calls to third party endpoints** - Calling the motivation quotes from open API.
 - **Backend service endpoints** - Placeholders for login that stores the current user on the server.
 - **Frontend calls service endpoints** - I did this using the fetch function.
+
+## **DB/Login deliverable**
+
+- **MongoDB Atlas database created** - Done!
+- **Static middleware for frontend** - Done!
+- **Calls to third party endpoints** - Calling the motivation quotes from open API.
+- **Backend service endpoints** - Placeholders for login that stores the current user on the server.
+- **Frontend calls service endpoints** - I did this using the fetch function.
