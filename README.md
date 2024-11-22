@@ -77,6 +77,6 @@ I am going to use the required technologies in the following ways.
 
 - **MongoDB Atlas database created** - Done!
 - **Stores data in MongoDB** - Done!
-- **Calls to third party endpoints** - Calling the motivation quotes from open API.
+- **User registration** - Creates a new account in the database.
 - **Backend service endpoints** - Placeholders for login that stores the current user on the server.
 - **Frontend calls service endpoints** - I did this using the fetch function.
