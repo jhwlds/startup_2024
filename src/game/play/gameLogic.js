@@ -21,12 +21,6 @@ export const useGameLogic = () => {
             setIsGameOver(true);
             finalScore();
         }
-
-        const gameEvent = {
-            userName: new URLSearchParams(window.location.search).get('name'),
-            score,
-            currentQuestionIndex,
-        };
     };
 
     const finalScore = () => {
