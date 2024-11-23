@@ -28,7 +28,6 @@ export const useGameLogic = () => {
             score,
             currentQuestionIndex,
         };
-        GameNotifier.broadcastEvent(gameEvent.userName, GameEvent.System, gameEvent);
     };
 
     const updateRanks = () => {

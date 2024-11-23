@@ -8,11 +8,11 @@ export function Game() {
 
     return (
           <>
-          <Players />
           <Routes>
             <Route path='/' element={<Login />} />
             <Route path='play' element={<Play />} />
           </Routes>
+          <Players />
           </>
     );
 }
