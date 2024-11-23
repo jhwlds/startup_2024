@@ -87,4 +87,4 @@ I am going to use the required technologies in the following ways.
 - **Backend listens for WebSocket connection** - Done!
 - **Frontend makes WebSocket connection** - Done!
 - **Data sent over WebSocket connection** - Done!
-- **WebSocket data displayed** - All user's final scores display in realtime.
+- **WebSocket data displayed** - All user's can see who started the game and what they scored in real time.
