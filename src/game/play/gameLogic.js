@@ -19,10 +19,9 @@ export const useGameLogic = () => {
             setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
         } else {
             setIsGameOver(true);
-            updateRanks();
+            finalScore();
         }
 
-        // 게임 진행 상태를 웹소켓을 통해 전송 (예: 게임 질문 번호와 점수)
         const gameEvent = {
             userName: new URLSearchParams(window.location.search).get('name'),
             score,
@@ -30,20 +29,10 @@ export const useGameLogic = () => {
         };
     };
 
-    const updateRanks = () => {
+    const finalScore = () => {
         const userName = new URLSearchParams(window.location.search).get('name');
-        const newScore = { name: userName, score };
-        
-        const savedScores = JSON.parse(localStorage.getItem('topScores')) || [];
-        
-        const updatedScores = [...savedScores, newScore]
-            .sort((a, b) => b.score - a.score)
-            .slice(0, 5);
-        
-        localStorage.setItem('topScores', JSON.stringify(updatedScores));
 
-        // 게임 종료 시 점수와 랭킹을 웹소켓을 통해 전송
-        GameNotifier.broadcastEvent(userName, GameEvent.End, { score, rankings: updatedScores });
+        GameNotifier.broadcastEvent(userName, GameEvent.End, { score });
     };
 
     const resetGame = () => {
@@ -51,7 +40,6 @@ export const useGameLogic = () => {
         setScore(0);
         setIsGameOver(false);
 
-        // 게임 초기화 시 웹소켓을 통해 게임 시작 이벤트 전송
         const userName = new URLSearchParams(window.location.search).get('name');
         GameNotifier.broadcastEvent(userName, GameEvent.Start, {});
     };
