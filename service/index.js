@@ -1,6 +1,7 @@
 const express = require('express');
 const { createUser, loginUser, submitScore } = require('./database.js');
 const app = express();
+const { peerProxy } = require('./ws.js');
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -11,9 +12,6 @@ app.set('trust proxy', true);
 const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
-});
 
 apiRouter.post('/create', async (req, res) => {
     const { username, password } = req.body;
@@ -63,3 +61,9 @@ apiRouter.post('/submit-score', async (req, res) => {
         res.status(500).json({ error: 'Error submitting score' });
     }
 });
+
+const httpService = app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+});
+  
+peerProxy(httpService);

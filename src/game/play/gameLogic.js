@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { GameNotifier, GameEvent } from './gameNotifier'; // GameNotifier import
 import questions from './questions';
 
 export const useGameLogic = () => {
@@ -20,6 +21,14 @@ export const useGameLogic = () => {
             setIsGameOver(true);
             updateRanks();
         }
+
+        // 게임 진행 상태를 웹소켓을 통해 전송 (예: 게임 질문 번호와 점수)
+        const gameEvent = {
+            userName: new URLSearchParams(window.location.search).get('name'),
+            score,
+            currentQuestionIndex,
+        };
+        GameNotifier.broadcastEvent(gameEvent.userName, GameEvent.System, gameEvent);
     };
 
     const updateRanks = () => {
@@ -33,13 +42,19 @@ export const useGameLogic = () => {
             .slice(0, 5);
         
         localStorage.setItem('topScores', JSON.stringify(updatedScores));
-    };
 
+        // 게임 종료 시 점수와 랭킹을 웹소켓을 통해 전송
+        GameNotifier.broadcastEvent(userName, GameEvent.End, { score, rankings: updatedScores });
+    };
 
     const resetGame = () => {
         setCurrentQuestionIndex(0);
         setScore(0);
         setIsGameOver(false);
+
+        // 게임 초기화 시 웹소켓을 통해 게임 시작 이벤트 전송
+        const userName = new URLSearchParams(window.location.search).get('name');
+        GameNotifier.broadcastEvent(userName, GameEvent.Start, {});
     };
 
     return { questions, currentQuestionIndex, score, isGameOver, handleAnswerClick, resetGame };
