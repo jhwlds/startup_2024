@@ -57,7 +57,7 @@ async function submitScore(username, score) {
 
   const topScores = await scoreCollection
     .find({})
-    .sort({ score: -1, timestamp: 1 })
+    .sort({ score: -1, timestamp: -1 })
     .limit(5)
     .toArray();
   return topScores;
