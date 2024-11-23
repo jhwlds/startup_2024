@@ -2,6 +2,7 @@ const express = require('express');
 const { createUser, loginUser, submitScore } = require('./database.js');
 const app = express();
 const { peerProxy } = require('./ws.js');
+const path = require('path');
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -60,6 +61,10 @@ apiRouter.post('/submit-score', async (req, res) => {
     } catch (err) {
         res.status(500).json({ error: 'Error submitting score' });
     }
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 const httpService = app.listen(port, () => {
