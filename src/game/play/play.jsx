@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './play.css';
 import { useGameLogic } from './gameLogic.js';
+import { Players } from './players.jsx';
 
 export function Play() {
     const { questions, currentQuestionIndex, score, isGameOver, handleAnswerClick, resetGame } = useGameLogic();
@@ -41,6 +42,7 @@ export function Play() {
     };
 
     return (
+        <>
         <header>
             <div className="two-box">
                 <div className="game-box">
@@ -75,5 +77,7 @@ export function Play() {
                 </div>
             </div>
         </header>
+        <Players />
+        </>
     );
 }

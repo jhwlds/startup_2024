@@ -81,3 +81,10 @@ I am going to use the required technologies in the following ways.
 - **existing user** - Gives an alert if the user already exists.
 - **Use MongoDB to store credentials** - Stores both user and their scores.
 - **Restricts functionality** - You cannot play game until you have logged in.
+
+## **WebSocket deliverable**
+
+- **Backend listens for WebSocket connection** - Done!
+- **Frontend makes WebSocket connection** - Done!
+- **Data sent over WebSocket connection** - Done!
+- **WebSocket data displayed** - All user's final scores display in realtime.
